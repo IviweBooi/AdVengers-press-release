@@ -34,81 +34,55 @@
     /* ── NAV ─────────────────────────────── */
     nav {
       position: fixed;
-      top: 18px;
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: min(1220px, calc(100% - 32px));
       z-index: 100;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 14px 22px;
-      border-radius: 999px;
-      background: rgba(15, 17, 23, 0.36);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.18),
-        inset 0 -1px 0 rgba(255,255,255,0.04),
-        0 18px 40px rgba(0,0,0,0.28);
-      backdrop-filter: blur(18px) saturate(1.2);
-      -webkit-backdrop-filter: blur(18px) saturate(1.2);
-      overflow: hidden;
-      isolation: isolate;
-      mix-blend-mode: normal;
-    }
-
-    nav::before,
-    nav::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: inherit;
-    }
-
-    nav::before {
-      background:
-        radial-gradient(120% 140% at 12% 20%, rgba(120, 210, 255, 0.28), transparent 42%),
-        radial-gradient(120% 120% at 80% 20%, rgba(157, 162, 255, 0.18), transparent 38%),
-        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.06) 100%);
-      filter: blur(14px);
-      opacity: 0.9;
-      z-index: -1;
-    }
-
-    nav::after {
-      inset: 1px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03) 30%, rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: inherit;
-      z-index: -1;
-    }
-
-    .nav-brand {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #fff;
+      gap: 0;
+      padding: 0 8px 6px;
+      background: rgba(14, 15, 20, 0.88);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-top: none;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), inset 0 -1px 0 rgba(255,255,255,0.06);
+      backdrop-filter: blur(28px) saturate(1.5);
+      -webkit-backdrop-filter: blur(28px) saturate(1.5);
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      align-items: center;
+      gap: 0;
       list-style: none;
     }
 
     .nav-links a {
-      font-size: 12px;
+      display: block;
+      padding: 16px 22px;
+      font-size: 14px;
       font-weight: 400;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.01em;
+      color: rgba(255,255,255,0.60);
       text-decoration: none;
-      transition: color 200ms;
+      border-radius: 999px;
+      transition: color 180ms, background 180ms;
     }
 
-    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      flex-shrink: 0;
+    }
 
     /* ── HERO ────────────────────────────── */
     .hero {
@@ -531,6 +505,133 @@
       background-position: center top;
     }
 
+    .team-gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #111318;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .team-gallery::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.22));
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .team-gallery-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .team-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity 900ms ease, transform 900ms ease;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: #111318;
+    }
+
+    .team-slide.is-active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 1;
+    }
+
+    .team-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: #111318;
+      border-radius: 2px;
+    }
+
+    .team-gallery-controls {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .team-gallery-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(12,14,20,0.42);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .team-gallery-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(16,121,191,0.45);
+    }
+
+    .team-gallery-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+    }
+
+    .team-gallery-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: none;
+      cursor: pointer;
+      transition: all 180ms ease;
+    }
+
+    .team-gallery-dot.is-active {
+      width: 24px;
+      border-radius: 999px;
+      background: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .team-gallery-controls {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .team-gallery-btn {
+        width: 36px;
+        height: 36px;
+      }
+
+      .team-gallery-dots {
+        gap: 6px;
+      }
+    }
+
     .team-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -735,7 +836,7 @@
       .footer-section { flex-direction: column; align-items: flex-start; }
       .footer-right { text-align: left; }
       .stat-block { flex-direction: column; gap: 40px; }
-      .nav-links { display: none; }
+      .nav-links li:not(:first-child):not(:last-child) { display: none; }
       .hero-display { flex-wrap: wrap; gap: 0; }
       .hero-word { font-size: clamp(48px, 14vw, 90px); }
     }
@@ -745,12 +846,17 @@
 
 <!-- NAV -->
 <nav>
-  <img src="images/logo-advengers.png" alt="The Advengers" style="height:36px;opacity:0.9" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-  <span class="nav-brand" style="display:none">The Advengers</span>
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
     <li><a href="#solution">Solution</a></li>
+  </ul>
+  <div class="nav-brand">
+    <img src="images/logo-advengers.png" alt="The Advengers" style="height:44px;opacity:0.92" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span style="display:none;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#fff">ADV</span>
+  </div>
+  <ul class="nav-links">
     <li><a href="#team">Team</a></li>
+    <li><a href="#footer">Contact</a></li>
   </ul>
 </nav>
 
@@ -945,7 +1051,14 @@
         A four-person team of Takealot AI Software Engineering Graduates building tools that make seller success less lonely.
       </div>
     </div>
-    <div class="team-header-photo" style="background-image: url('images/team-outdoor.jpg');"></div>
+    <div class="team-gallery" aria-label="Team gallery slideshow">
+      <div class="team-gallery-track" id="teamGalleryTrack"></div>
+      <div class="team-gallery-controls">
+        <button class="team-gallery-btn prev" aria-label="Previous slide">&#8249;</button>
+        <div class="team-gallery-dots" id="teamGalleryDots" aria-label="Slide navigation"></div>
+        <button class="team-gallery-btn next" aria-label="Next slide">&#8250;</button>
+      </div>
+    </div>
   </div>
 
   <div class="team-grid reveal">
@@ -1023,6 +1136,93 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Team gallery slideshow
+  const galleryFiles = [
+    'Statie_Photography_08.jpg',
+    'Statie_Photography_110.jpg',
+    'Statie_Photography_122.jpg',
+    'Statie_Photography_144.jpg',
+    'Statie_Photography_16.jpg',
+    'Statie_Photography_169.jpg',
+    'Statie_Photography_17.jpg',
+    'Statie_Photography_170.jpg',
+    'Statie_Photography_175.jpg',
+    'Statie_Photography_184.jpg',
+    'Statie_Photography_23.jpg',
+    'Statie_Photography_27.jpg',
+    'Statie_Photography_29.jpg',
+    'Statie_Photography_38.jpg',
+    'Statie_Photography_51.jpg',
+    'Statie_Photography_64.jpg',
+    'Statie_Photography_72.jpg',
+    'Statie_Photography_77.jpg',
+    'Statie_Photography_90.jpg'
+  ];
+
+  const track = document.getElementById('teamGalleryTrack');
+  const dotsContainer = document.getElementById('teamGalleryDots');
+  const prevBtn = document.querySelector('.team-gallery-btn.prev');
+  const nextBtn = document.querySelector('.team-gallery-btn.next');
+
+  const teamSlides = galleryFiles.map((file, index) => {
+    const slide = document.createElement('div');
+    slide.className = 'team-slide' + (index === 0 ? ' is-active' : '');
+    slide.innerHTML = `<img src="images/gallery/${file}" alt="The Advengers team photo ${index + 1}">`;
+    return slide;
+  });
+
+  const teamDots = galleryFiles.map((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'team-gallery-dot' + (index === 0 ? ' is-active' : '');
+    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+    return dot;
+  });
+
+  teamSlides.forEach(slide => track.appendChild(slide));
+  teamDots.forEach(dot => dotsContainer.appendChild(dot));
+
+  let currentSlide = 0;
+  let slideshowTimer;
+
+  function renderTeamSlide(index) {
+    currentSlide = (index + teamSlides.length) % teamSlides.length;
+    teamSlides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === currentSlide);
+    });
+    teamDots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === currentSlide);
+      dot.setAttribute('aria-current', i === currentSlide ? 'true' : 'false');
+    });
+  }
+
+  function startTeamSlideshow() {
+    clearInterval(slideshowTimer);
+    slideshowTimer = setInterval(() => {
+      renderTeamSlide(currentSlide + 1);
+    }, 3500);
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    renderTeamSlide(currentSlide - 1);
+    startTeamSlideshow();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    renderTeamSlide(currentSlide + 1);
+    startTeamSlideshow();
+  });
+
+  teamDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      renderTeamSlide(index);
+      startTeamSlideshow();
+    });
+  });
+
+  renderTeamSlide(0);
+  startTeamSlideshow();
 
   // Count-up animation for the stat numbers
   function animateStats(statBlock) {
